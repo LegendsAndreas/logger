@@ -19,19 +19,7 @@ import (
 // 	pathName = path
 // }
 
-/*
-* @brief Takes an error message and the path where that error happend and stores it in "log.txt".
-*
-* This function opens or creates a log.txt file in append write only mode, and stores the error "errMsg"
-* in the appropriate path, provided by "path". It gets the current time and formates it to YYYY-MM-DD HH:MM:SS.
-* The time along with the error message then gets written into the log file.
-*
-* @param errMsg The error message that will be logged.
-* @param logName The name of the log file. Default name is "Log". If you want the default name, leave this as empty("").
-* @param path The path of where the error occured.
-*
- */
-func GoLog(errMsg error, errType string, logName string, path string) {
+func goLog(errMsg error, errType string, logName string, path string) {
 	// Formates absolute path and log file name.
 	logPath := formatLogPath(logName, path)
 
@@ -74,30 +62,24 @@ func formatLogPath(logName string, path string) string {
 	return logPath
 }
 
-// Calls the function "GoLog()" and logs an error with the type "INFO".
+// Calls the function "goLog()" and logs an error with the type "INFO".
 func Info(errMsg error, logName string, pathName string) {
-	GoLog(errMsg, "INFO", logName, pathName)
+	goLog(errMsg, "INFO", logName, pathName)
 }
 
-// Calls the function "GoLog()" and logs an error with the type "WARNING".
+// Calls the function "goLog()" and logs an error with the type "WARNING".
 func Warning(errMsg error, logName string, pathName string) {
-	GoLog(errMsg, "WARNING", logName, pathName)
+	goLog(errMsg, "WARNING", logName, pathName)
 }
 
-// Calls the function "GoLog()" and logs an error with the type "ERROR".
+// Calls the function "goLog()" and logs an error with the type "ERROR".
 func Error(errMsg error, logName string, pathName string) {
-	GoLog(errMsg, "ERROR", logName, pathName)
+	goLog(errMsg, "ERROR", logName, pathName)
 }
 
-/*
-* @brief GetPath returns the absolute path of the executable.
-*
-* @note Remember that if you just run your Go program with "go run main.go", it wont make
-* 		store the log file in the program directory, since the execution of the program
-*		happens in your GOPATH folder.
-*
-* @returns A string of the directory of the executable.
- */
+// Gets the absolute path of the directory, where your program executes.
+//
+// Remember that if you just use "go run file.go", the code will execute in your GOPATH and not where you have your program.
 func GetPath() string {
 	// Get the absolute path of the executable
 	execPath, err := os.Executable()
