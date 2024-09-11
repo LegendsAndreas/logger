@@ -7,10 +7,6 @@ import (
 	"time"
 )
 
-// Info: Yellow
-// Warning: Orange.
-// Failiure: Red.
-
 // var logName string
 // var pathName string
 
@@ -41,6 +37,7 @@ func goLog(errMsg error, errType string, logName string, path string) {
 	currentTime := time.Now()
 	formattedTime := currentTime.Format("2006-01-02 15:04:05")
 
+	// Writes to log file with the format: [DATE]: [ERROR TYPE] [ERROR MESSAGE]
 	_, err = logFile.WriteString(fmt.Sprintf("%s: [%s] %s\n", formattedTime, errType, errMsg))
 	if err != nil {
 		fmt.Println("Error writing to log file.")
@@ -79,7 +76,7 @@ func Error(errMsg error, logName string, pathName string) {
 
 // Gets the absolute path of the directory, where your program executes.
 //
-// Remember that if you just use "go run file.go", the code will execute in your GOPATH and not where you have your program.
+// Remember that if you just use "go run file.go", the code will execute in your GOPATH and not where you have your program is.
 func GetPath() string {
 	// Get the absolute path of the executable
 	execPath, err := os.Executable()
