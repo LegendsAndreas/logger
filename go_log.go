@@ -9,18 +9,6 @@ import (
 	"github.com/fatih/color"
 )
 
-// Info: Yellow
-// Warning: Orange
-// Error: Red
-
-// var logName string
-// var pathName string
-
-// func SetLogFile(logName string, path string) {
-// 	logName = logName
-// 	pathName = path
-// }
-
 func goLog(errMsg error, errType string, logName string, path string) {
 
 	// Formates absolute path and log file name.
@@ -50,7 +38,7 @@ func goLog(errMsg error, errType string, logName string, path string) {
 
 	// Prints the message that we will send to the log, in yellow.
 	color.Set(color.FgYellow)
-	fmt.Printf("Adding \"%s: [%s] %s\"", formattedTime, errType, errMsg)
+	fmt.Printf("Adding \"%s: [%s] %s\"\n", formattedTime, errType, errMsg)
 	color.Unset()
 
 	// Writes to log file with the format: [DATE]: [ERROR TYPE] [ERROR MESSAGE]
